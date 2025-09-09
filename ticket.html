@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ticket Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef;
+      padding: 20px;
+    }
+    h2 { text-align: center; }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 320px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    nav a {
+      color: blue;
+      margin-right: 20px;
+      padding: 5px 10px;
+      text-align: center;
+      border: 2px solid black;
+      border-radius: 5px;
+      font-weight: bold;
+      display: inline-block;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav a:hover { background: blue; color: #fff; }
+  </style>
+</head>
+<body>
+
+<nav>
+<a href=" file:///C:/Users/zisha/OneDrive/Desktop/final/final.html">home</a>
+    <a href="file:///C:/Users/zisha/OneDrive/Desktop/final/ticket.html" > booking</a>
+<a href="file:///C:/Users/zisha/OneDrive/Desktop/final/cu.html" > contact</a>
+<a href="file:///C:/Users/zisha/OneDrive/Desktop/final/about.html" > about us</a>
+<a href="file:///C:/Users/zisha/OneDrive/Desktop/final/offers.html" > offers </a><br><br><br>
+
+</nav>
+
+
+<h2>Ticket Booking</h2>
+
+<form id="ticketForm">
+  <input type="text" id="name" placeholder="Passenger Name" required>
+  <input type="number" id="age" placeholder="Age" required>
+  <input type="date" id="date" required>
+
+  <select id="From">
+    <option value="">FROM</option>
+    <option value="Visakhapatnam">Visakhapatnam</option>
+    <option value="Goa">Goa</option>
+    <option value="Hyderabad">Hyderabad</option>
+    <option value="Kerala">Kerala</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Kolkata">Kolkata</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+    <option value="Ooty">Ooty</option>
+    <option value="Tamil Nadu">Tamil Nadu</option>
+    <option value="Araku">Araku</option>
+  </select>
+
+  <select id="Destination">
+    <option value="">DESTINATION</option>
+    <option value="Visakhapatnam">Visakhapatnam</option>
+    <option value="Goa">Goa</option>
+    <option value="Hyderabad">Hyderabad</option>
+    <option value="Kerala">Kerala</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Kolkata">Kolkata</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+    <option value="Ooty">Ooty</option>
+    <option value="Tamil Nadu">Tamil Nadu</option>
+    <option value="Araku">Araku</option>
+  </select>
+
+  <select id="Vehicle">
+    <option value="">VEHICLE</option>
+    <option value="Bus">Bus</option>
+    <option value="Train">Train</option>
+  </select>
+
+  <select id="class">
+    <option value="Sleeper">Sleeper</option>
+    <option value="AC">AC</option>
+    <option value="General">General</option>
+  </select>
+<input type="text" id="CODE" placeholder="CODE" required>
+
+  <button type="submit">Generate Ticket</button>
+</form>
+
+<script>
+document.getElementById("ticketForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  // Collect values
+  const name = document.getElementById("name").value;
+  const age = document.getElementById("age").value;
+  const from = document.getElementById("From").value;
+  const destination = document.getElementById("Destination").value;
+  const date = document.getElementById("date").value;
+  const travelClass = document.getElementById("class").value;
+  const vehicle = document.getElementById("Vehicle").value;
+const CODE = document.getElementById("CODE").value;
+
+  // Open new window for ticket
+  const ticketWindow = window.open("", "_blank");
+  ticketWindow.document.write(`
+    <html>
+    <head>
+      <title>${vehicle} Ticket</title>
+      <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .ticket {
+          width: 350px;
+          margin: auto;
+          padding: 20px;
+          border: 2px dashed #333;
+          border-radius: 10px;
+          text-align: left;
+        }
+        h2 { text-align: center; }
+        button {
+          margin-top: 20px;
+          display: block;
+          padding: 10px 20px;
+          background: blue;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="ticket">
+        <h2>${vehicle} Ticket</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Age:</strong> ${age}</p>
+        <p><strong>From:</strong> ${from}</p>
+        <p><strong>Destination:</strong> ${destination}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Class:</strong> ${travelClass}</p>
+        <p><strong>Vehicle:</strong> ${vehicle}</p>
+<p><strong>CODE:</strong> ${CODE}</p>
+
+        <button onclick="window.print()">Print Ticket</button>
+      </div>
+    </body>
+    </html>
+  `);
+  ticketWindow.document.close();
+});
+</script>
+
+</body>
+</html>
